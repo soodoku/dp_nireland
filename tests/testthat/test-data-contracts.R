@@ -70,7 +70,12 @@ test_that("restored literal coding reaches respondent totals", {
   expect_equal(actual$primary_total, actual$expected_total)
   slots <- readr::read_csv(
     file.path(DERIVED_DIR, "coding_slots.csv"),
-    col_types = readr::cols(final_signature = readr::col_character()),
+    col_types = readr::cols(
+      ch = readr::col_character(),
+      la = readr::col_character(),
+      monty = readr::col_character(),
+      final_signature = readr::col_character()
+    ),
     show_col_types = FALSE
   ) |>
     dplyr::filter(
@@ -78,6 +83,8 @@ test_that("restored literal coding reaches respondent totals", {
       .data$side == "b", .data$slot == 1L
     )
   expect_equal(nrow(slots), 1L)
+  expect_identical(slots$ch, "1,3")
+  expect_identical(slots$la, "1,3")
   expect_true(slots$coder_agreement)
   expect_false(slots$unresolved)
   expect_identical(slots$final_signature, "1,3")
