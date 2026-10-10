@@ -1,4 +1,4 @@
-DP_DATA_ROOT <- Sys.getenv("DP_DATA_ROOT", unset = here::here("..", "dp-data"))
+DP_DATA_ROOT <- Sys.getenv("DP_DATA_ROOT", unset = here::here("..", "dp_data"))
 SOURCE_MANIFEST <- yaml::read_yaml(here::here("data", "manifest.yaml"))
 source_path <- function(name) {
   entry <- SOURCE_MANIFEST$sources[[name]]

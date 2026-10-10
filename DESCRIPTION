@@ -1,7 +1,7 @@
 Package: nirelandpaper
 Type: Project
 Title: Deliberation and the Learning of Opposing Arguments
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Gaurav", "Sood", role = c("aut", "cre"), email = "gsood07@gmail.com"),
     person("Robert C.", "Luskin", role = "aut"),

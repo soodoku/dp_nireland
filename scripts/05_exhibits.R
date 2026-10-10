@@ -15,10 +15,12 @@ sample_composition <- results$sample_composition
 subgroup_means <- results$subgroup_means
 subgroup_estimates <- results$subgroup_estimates
 coder_agreement <- readr::read_csv(
-  file.path(DERIVED_DIR, "coder_agreement.csv"), show_col_types = FALSE
+  file.path(DERIVED_DIR, "coder_agreement.csv"),
+  show_col_types = FALSE
 )
 sample_counts <- readr::read_csv(
-  file.path(DERIVED_DIR, "sample_counts.csv"), show_col_types = FALSE
+  file.path(DERIVED_DIR, "sample_counts.csv"),
+  show_col_types = FALSE
 )
 
 dir.create(FIGURE_DIR, recursive = TRUE, showWarnings = FALSE)
@@ -510,4 +512,23 @@ write_tex_macros(
     UnresolvedSlots = as.character(coder_agreement$unresolved_disagreements)
   ),
   file.path(TABLE_DIR, "numbers.tex")
+)
+
+readme_results <- dplyr::bind_rows(unadjusted, adjusted, paired_total) |>
+  dplyr::mutate(
+    Comparison = c(
+      "Follow-up participants minus controls", "Adjusted participant–control difference",
+      "Follow-up minus event among participants"
+    ),
+    `Difference [95% interval]` = sprintf(
+      "%.2f [%.2f, %.2f]", .data$estimate, .data$conf_low, .data$conf_high
+    ),
+    Respondents = .data$n
+  ) |>
+  dplyr::select("Comparison", "Difference [95% interval]", "Respondents")
+readme_table <- knitr::kable(readme_results, format = "pipe")
+readme <- readLines(here::here("docs", "README.in.md"))
+writeLines(
+  unlist(lapply(readme, function(line) if (line == "{{RESULTS_TABLE}}") readme_table else line)),
+  here::here("README.md")
 )

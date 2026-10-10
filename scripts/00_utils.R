@@ -24,7 +24,7 @@ verify_manifest <- function(path = here::here("data", "manifest.yaml"),
     source_path <- file.path(dp_data_root, source$path)
     if (!file.exists(source_path)) {
       stop("Missing source file: ", source_path,
-        ". See docs/data.md for dp-data setup.",
+        ". See docs/data.md for dp_data setup.",
         call. = FALSE
       )
     }

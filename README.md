@@ -1,29 +1,56 @@
-# How Can You Think That?
+# How Can You Think That? Deliberation and the Learning of Opposing Arguments
 
-This repository contains the analysis and manuscript for *How Can You
-Think That? Deliberation and the Learning of Opposing Arguments*, by Gaurav
-Sood, Robert C. Luskin, and James S. Fishkin.
+Gaurav Sood, Robert C. Luskin, and James S. Fishkin
 
-The study examines whether people can articulate reasons supporting and opposing
-school-policy proposals after a Deliberative Poll in Omagh, Northern Ireland.
-The rebuilt analysis treats the central participant--control comparison as an
-association: event attendance was self-selected, and the open-ended outcome was
-not measured at the recruitment interview. Current estimates and intervals are
-generated in [`tabs/main_estimates.csv`](tabs/main_estimates.csv); the design
-interpretation is recorded in [`docs/design.md`](docs/design.md).
+[Paper](ms/main.pdf) · [Research design](docs/design.md) · [Data](docs/data.md)
 
-## Reproduce the paper
+## Question and motivation
+
+Does deliberation help people articulate reasons for policy views they oppose?
+Learning what another side can argue is different from changing one's own
+position. The study examines whether a Deliberative Poll on school policy in
+Omagh, Northern Ireland, broadens the reasons people can give on both sides.
+
+## Data and research design
+
+The analysis combines a numeric survey, discussion-group roster, and coder
+labels for open-ended answers. It compares participants with controls at the
+follow-up survey and follows participants from the event to follow-up. Event
+attendance was self-selected, and the open-ended outcome was not measured at
+recruitment. The participant–control comparison therefore estimates an
+association, not a causal effect of attendance.
+
+## Key findings
+
+At follow-up, participants give more coded reasons on average than controls,
+but the interval for the adjusted difference includes zero. Participants' reason
+counts decline between the event and follow-up, also with an interval spanning
+zero. The data do not clearly establish a lasting participant advantage.
+
+|Comparison                               |Difference [95% interval] | Respondents|
+|:----------------------------------------|:-------------------------|-----------:|
+|Follow-up participants minus controls    |1.12 [-0.68, 2.92]        |         185|
+|Adjusted participant–control difference  |0.97 [-0.83, 2.77]        |         174|
+|Follow-up minus event among participants |-0.87 [-3.44, 1.70]       |          62|
+
+Estimates are differences in the number of answers containing a coded reason;
+intervals are 95% confidence intervals. Uncertainty uses CR2 small-sample
+corrections, grouping participants by discussion group and treating controls as
+singleton clusters. The noncontemporaneous event–control comparison is reported
+in [tabs/main_estimates.csv](tabs/main_estimates.csv), alongside these comparisons.
+
+## Reproduce
 
 The project uses R and XeLaTeX. From the repository root:
 
 ```sh
-git clone --branch v0.4.5 --depth 1 https://github.com/soodoku/dp-data.git ../dp-data
+git clone --branch v0.4.5 --depth 1 https://github.com/soodoku/dp_data.git ../dp_data
 make restore
 make check
 ```
 
-The public dp-data release supplies all three analytical inputs. A downloaded
-release archive works too; extract it to `../dp-data`, or set `DP_DATA_ROOT`
+The public dp_data release supplies all three analytical inputs. A downloaded
+release archive works too; extract it to `../dp_data`, or set `DP_DATA_ROOT`
 to its location. Builds verify the pinned file hashes before reading data.
 See [`docs/data.md`](docs/data.md) for the source contracts and update procedure.
 
@@ -44,10 +71,20 @@ The pipeline renders publication tables directly with `knitr::kable`; the two
 headline CSV files in `tabs/` provide machine-readable estimates.
 Inline manuscript numbers come from [`tabs/numbers.tex`](tabs/numbers.tex).
 
-## Repository structure
+
+Edit `docs/README.in.md` to change this README; `scripts/05_exhibits.R`
+supplies the current result table.
+
+## Files and pipeline
 
 - `data/`: source manifest and ignored generated analysis data
-- `scripts/`: numbered R pipeline
+- `scripts/00_config.R`: paths, data contracts, and analysis settings
+- `scripts/00_utils.R`: reusable functions
+- `scripts/01_prepare_survey.R` and `02_prepare_coding.R`: input preparation
+- `scripts/03_build_analysis.R` and `04_estimate.R`: analysis data and estimates
+- `scripts/05_exhibits.R`: manuscript exhibits, inline numbers, and this README
+- `scripts/98_validate.R`: analytical validation
+- `scripts/99_run_all.R`: run the stages in order
 - `tests/`: data-contract and coding tests
 - `tabs/`: headline CSV results and generated LaTeX table fragments
 - `figs/`: generated publication figures
