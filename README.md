@@ -123,4 +123,14 @@ source data.
 
 <!-- adjacent:start -->
 
+## 🔗 Adjacent Repositories
+
+- [soodoku/dp_misinformation](https://github.com/soodoku/dp_misinformation) — Deliberation and Misinformation \(Luskin and Sood\). Data, code, and manuscript.
+- [soodoku/dp_learning](https://github.com/soodoku/dp_learning) — Deliberation and Learning: Evidence From Deliberative Polls \(Luskin, Sood, Fishkin\)
+- [soodoku/dp_data](https://github.com/soodoku/dp_data) — Deliberative Poll data
+- [soodoku/dp_distortions](https://github.com/soodoku/dp_distortions) — Replication Data and Scripts for Deliberative Distortions
+- [soodoku/sophisticated_cynic](https://github.com/soodoku/sophisticated_cynic) — Is Cynicism Taken as Evidence of Political Sophistication? No.
+
+_Powered by [Adjacent](https://github.com/gojiplus/adjacent)_
+
 <!-- adjacent:end -->
