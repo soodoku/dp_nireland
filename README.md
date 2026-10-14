@@ -120,3 +120,7 @@ required to reproduce the paper. See [`docs/data.md`](docs/data.md).
 
 The MIT license covers code and documentation only. It does not relicense the
 source data.
+
+<!-- adjacent:start -->
+
+<!-- adjacent:end -->
