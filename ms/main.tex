@@ -1,14 +1,12 @@
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage{working-paper}
 
-\usepackage[margin=1in]{geometry}
-\usepackage{microtype}
-\usepackage{setspace}
 \usepackage{booktabs}
 \usepackage{graphicx}
-\usepackage{caption}
+
 \usepackage{pdflscape}
 \usepackage{float}
-\usepackage{natbib}
+
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
@@ -21,7 +19,7 @@
 
 \input{../tabs/numbers.tex}
 
-\title{How Can You Think That?\\Deliberation and the Learning of Opposing Arguments}
+\title{\scshape How Can You Think That?\\Deliberation and the Learning of Opposing Arguments}
 \author{Gaurav Sood \and Robert C. Luskin \and James S. Fishkin}
 \date{September 2026}
 
@@ -487,7 +485,8 @@ measurement differences.
 \begin{table}[htbp]
 \centering
 \caption{Primary and secondary respondent-level comparisons}
-\input{../tabs/main_estimates.tex}
+{\setlength{\tabcolsep}{3.5pt}\input{../tabs/main_estimates.tex}}
+\par
 \begin{minipage}{\textwidth}
 \smallskip\footnotesize
 \textit{Note:} Differences are in coded reasons. Intervals use CR2 standard errors with
